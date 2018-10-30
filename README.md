@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# projectJS
-=======
 #NIO
 
 #synopsis
@@ -17,4 +14,3 @@ Page d'accueil : bouton START + choix du skin. => Accès au choix des nivaux.
 Schéma des niveaux: Une fois les 5 niveaux terminés , le niveau 6 est débloqué.
 
 Le joueur sélectionne un niveau pour le lancer.
->>>>>>> 851c0344da61f1893fc540a9123695f245b1d348

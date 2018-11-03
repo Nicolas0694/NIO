@@ -8,6 +8,6 @@ window.onload = function () {
     ctx.fillStyle = "#00a3cc";
     ctx.fillRect(200,200,400,100);
 
-      console.log("TEST");
+    console.log("TEST");
 
 }

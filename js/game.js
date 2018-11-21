@@ -1,6 +1,5 @@
 window.onload = function init() 
 {
-
     const Controller = function() {
         this.left = this.right = this.up = false;
     };
@@ -22,6 +21,7 @@ window.onload = function init()
         this.oy = this.y = y;
         this.vx = this.vy = 0;
     };
+    
     Player.prototype = {
         behave:function() { this.behavior(this); },
     };
@@ -115,6 +115,7 @@ window.onload = function init()
         platform.vy = platform.anchor_y + Math.sin(platform.d) * 40 - platform.y;
         platform.y += platform.vy;
     }
+
     
     var tile_set = new Image();
     var tile_size = 16;

@@ -21,7 +21,6 @@ window.onload = function init()
         this.oy = this.y = y;
         this.vx = this.vy = 0;
     };
-    
     Player.prototype = {
         behave:function() { this.behavior(this); },
     };
@@ -75,7 +74,8 @@ window.onload = function init()
         }
     }
     
-    const Platform = function(x, y, big, behavior) {
+    const Platform = function(x, y, big, behavior) 
+    {
         Player.call(this, x, y, big ? 160 : 208, big ? 46 : 30, behavior);
         this.anchor_x = x;
         this.anchor_y = y;
@@ -115,7 +115,6 @@ window.onload = function init()
         platform.vy = platform.anchor_y + Math.sin(platform.d) * 40 - platform.y;
         platform.y += platform.vy;
     }
-
     
     var tile_set = new Image();
     var tile_size = 16;
@@ -146,8 +145,10 @@ window.onload = function init()
     var controller = new Controller();
     var platforms = [ new Platform(130, 64, false, platformBehaviorY), new Platform(96, 96, true, platformBehaviorX), new Platform(160, 64, false, platformBehaviorXY),
                     new Platform(10, 64, false, platformBehaviorXY), new Platform(30, 64, false, platformBehaviorY), new Platform(96, 40, false, platformBehaviorX), 
-                     new Platform(96, 40, false, platformBehaviorX)];
+                     new Platform(120, 160, false, platformBehaviorY)];
     var dude = new Dude(100, 100, dudeBehavior);
+
+    /* animation */
     function loop(time_step) {
         window.requestAnimationFrame(loop);
         screen_h = document.documentElement.clientHeight - 16;

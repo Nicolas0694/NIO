@@ -134,7 +134,7 @@ window.onload = function init()
                        19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
                        18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
                        19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19];
-    var floor = 116;
+    var floor = 160;
     var friction = 0.3;
     var gravity = 1;
     var canvas = document.querySelector("#myCanvas");
@@ -145,7 +145,7 @@ window.onload = function init()
     var controller = new Controller();
     var platforms = [ new Platform(130, 64, false, platformBehaviorY), new Platform(96, 96, true, platformBehaviorX), new Platform(160, 64, false, platformBehaviorXY),
                     new Platform(10, 64, false, platformBehaviorXY), new Platform(30, 64, false, platformBehaviorY), new Platform(96, 40, false, platformBehaviorX), 
-                     new Platform(120, 160, false, platformBehaviorY)];
+                     new Platform(120, 130, false, platformBehaviorY)];
     var dude = new Dude(100, 100, dudeBehavior);
 
     /* animation */

@@ -5,20 +5,24 @@
 	<head>
 
 		<title>Platforms</title>
-
+		<script src="js/game.js"></script>
+		<link href="css/game.css"/>
+<!--   
 		<style>
 			* { margin:0; padding:0; }
 			html, body { height:100%; width:100%; }
 			body { background-color:#000000; display:grid; }
 			canvas { align-self:center; justify-self:center; }
 		</style>
+-->
+
 
 	</head>
 
 	<body>
 
 		<canvas></canvas>
-
+<!--   
 		<script type = "text/javascript">
 			const Controller = function() {
 				this.left = this.right = this.up = false;
@@ -177,11 +181,11 @@
 			buffer.canvas.height = map_rows * tile_size;
 			buffer.canvas.width = map_columns * tile_size;
 			tile_set.addEventListener("load", (event) => { loop(); });
-			tile_set.src = "background.png";
+			tile_set.src = "assets/background.png";
 			window.addEventListener("keydown", (event) => { controller.keyDownUp(event); });
 			window.addEventListener("keyup", (event) => { controller.keyDownUp(event); });
 		</script>
-
+-->
 	</body>
 
 </html>

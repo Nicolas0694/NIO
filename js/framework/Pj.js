@@ -1,8 +1,6 @@
 /* La classe representant le joueur */
 class Pj {
 
-        var x,y,mx,my;
-
         constructor (x,y,mx,my,v){
             this.x = x;
             this.y = y;

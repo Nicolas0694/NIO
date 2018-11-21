@@ -1,3 +1,8 @@
+class Controller
+{
+    
+}
+
 /*
 
 const Controller = function() {
@@ -103,3 +108,5 @@ function platformBehaviorXY(platform) {
     platform.vy = platform.anchor_y + Math.sin(platform.d) * 40 - platform.y;
     platform.y += platform.vy;
 }
+
+*/

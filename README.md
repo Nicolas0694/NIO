@@ -1,10 +1,13 @@
 
 
-#NIO
+##NIO
 
-#synopsis NIO est un jeu de type plateforme dans lequel le héros du meme nom pars à la recherche de la chèvre astrale Gaia afin de detérminer le sens de l'existence. Il traversera plusieurs plans astraux , après avoir quitter la Terre , pour collecter différents objets lui donnant accès à la dimension de Gaia.
+#synopsis 
 
-#niveaux Le jeu est structuré en 5 niveaux à compléter dans l'ordre pour débloquer des objets "clés" le niveau 6 correspondant à la dimension de Gaia.
+NIO est un jeu de type plateforme dans lequel le héros du meme nom pars à la recherche de la chèvre astrale Gaia afin de detérminer le sens de l'existence. Il traversera plusieurs plans astraux , après avoir quitter la Terre , pour collecter différents objets lui donnant accès à la dimension de Gaia.
+
+#niveaux 
+Le jeu est structuré en 5 niveaux à compléter dans l'ordre pour débloquer des objets "clés" le niveau 6 correspondant à la dimension de Gaia.
 
 #modules
 

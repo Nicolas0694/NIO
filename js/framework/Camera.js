@@ -1,6 +1,5 @@
 /* Classe representant le camera */
-
-class Player 
+class Camera
 {
 
 

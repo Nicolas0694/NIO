@@ -1,10 +1,10 @@
 /* La classe representant le joueur */
 class Pj {
     
-        constructor(x,y) {
-            this.x = x;
-            this.y = y;
-        }
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+    }
 
         
 

@@ -41,7 +41,7 @@ window.onload = function init()
         
         if (controller.left)
         {
-            if(dude.x > 50)
+            if(dude.x > 55)
             {
                 dude.vx -= 0.75;
             }
@@ -50,7 +50,7 @@ window.onload = function init()
         
         if (controller.right) 
         {
-            if(dude.x < 190)
+            if(dude.x < 185)
             {
                 dude.vx += 0.75;
             }

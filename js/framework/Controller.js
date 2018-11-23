@@ -1,6 +1,17 @@
 class Controller
 {
+    constructor(){
+        this.left = this.right = this.up = false;
+    };
     
+    controller(event) {
+        var down = event.type == "keydown" ? true : false;
+        switch(event.keyCode) {
+            case 37: this.left = down; break;
+            case 38: this.up = down; break;
+            case 39: this.right = down; break;
+        }
+    };
 }
 
 /*

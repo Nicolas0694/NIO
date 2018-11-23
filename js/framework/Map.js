@@ -2,7 +2,7 @@
 class Map 
 {
     /* png_sprites permet des sprites en fonction de la thematique de la map */
-    startPJY,matrice_sprites,png_sprites,list_Platformes,list_PNGs,PJ){
+    constructor(startPJY,matrice_sprites,png_sprites,list_Platformes,list_PNGs,PJ){
         this.startPJ = startPJ;
         this.list_Platformes = list_Platformes;
         this.list_PNGs = list_PNGs;

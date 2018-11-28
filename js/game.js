@@ -97,8 +97,8 @@ window.onload = function init()
     }
     
     Platform.prototype = {
-        get floor() { return this.y + 4; },
-        get oldFloor() { return this.oy + 4; },
+        get floor() { return this.y + ((i*10)+4); },
+        get oldFloor() { return this.oy + ((i*10)+4); },
         get left() { return this.x + 3; },
         get right() { return this.x + 9 + this.w; }
     };
@@ -135,7 +135,23 @@ window.onload = function init()
     var map_rows = 12;
     var map_ratio = map_columns / map_rows;
     var map_scale = 1;
-    var map =         [18,20,21,0,4,5,6,0,0,0,0,0,0,22,16,17,
+    var map =         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       19,19,19,19,19,19,0,0,19,19,19,19,19,19,19,19,
+                       19,19,19,19,19,19,0,0,19,19,19,19,19,19,19,19,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,4,5,6,0,0,0,0,0,0,22,16,17,
                        19,19,21,0,7,8,9,0,0,4,6,0,0,22,19,19,
                        18,20,21,0,0,0,0,0,0,7,9,0,0,22,16,17,
                        19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
@@ -146,8 +162,9 @@ window.onload = function init()
                        18,20,21,0,0,0,0,0,0,4,6,0,0,22,16,17,
                        19,19,21,0,0,0,0,0,0,7,9,0,0,22,19,19,
                        18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
-                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19];
-    var floor = 160;
+                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19
+                     ];
+    var floor = 166;
     var friction = 0.3;
     var gravity = 1;
     var canvas = document.querySelector("#myCanvas");
@@ -156,14 +173,30 @@ window.onload = function init()
     var screen_h = document.documentElement.clientHeight - 16;
     var screen_w = document.documentElement.clientWidth - 16;
     var controller = new Controller();
-    var platforms = [new Platform(96, 96, true, platformBehaviorX), new Platform(160, 64, false, platformBehaviorXY),
-                    new Platform(30, 64, false, platformBehaviorY), new Platform(96, 40, false, platformBehaviorX), 
-                     new Platform(120, 130, false, platformBehaviorY)];
+    var platforms = [
+                     new Platform(50, -30, true, platformBehaviorX),
+                     new Platform(50, -10, true, platformBehaviorY),
+                     new Platform(96, 40, false, platformBehaviorX),
+                     new Platform(160, 64, false, platformBehaviorXY),
+                     new Platform(96, 96, true, platformBehaviorX),
+                     new Platform(50, 130, false, platformBehaviorY) 
+                     ];
     var dude = new Dude(100, 100, dudeBehavior);
+    
+    var i = 0;
 
+    var interval = setInterval(increment, 3000);
+
+    function increment(){
+        i = i % 360 + 1;
+        floor += i*16;
+    }
+    
+    
     /* animation */
     function loop(time_step) {
         window.requestAnimationFrame(loop);
+        console.log(dude.y);
         screen_h = document.documentElement.clientHeight - 16;
         screen_w = document.documentElement.clientWidth - 16;
         
@@ -179,15 +212,18 @@ window.onload = function init()
         for (let index = map.length - 1; index > -1; -- index) {
             let value = map[index];
             let tile_x = (index % map_columns) * tile_size;
-            let tile_y = Math.floor(index / map_columns) * tile_size;
-            buffer.drawImage(tile_set, value * tile_size, 0, tile_size, tile_size, tile_x, tile_y, tile_size, tile_size);
+            let tile_y = Math.floor(index / map_columns + i) * tile_size - 250;
+            buffer.drawImage(tile_set, value * 16, 0, tile_size, tile_size, tile_x, tile_y, tile_size, tile_size);
+            
         }
         
         for (let index = platforms.length - 1; index > -1; -- index) {
-            let platform = platforms[index];
+            let platform = platforms[index];        
             platform.behave();
-            buffer.drawImage(tile_set, platform.source_x, 0, platform.source_w, tile_size, Math.round(platform.x), Math.round(platform.y), platform.source_w, tile_size);
-        }
+            // platform.y -= dude.y ?
+            buffer.drawImage(tile_set, platform.source_x, 0, platform.source_w, tile_size+1, Math.round(platform.x), Math.round(platform.y + (i*10)), platform.source_w, tile_size);
+            
+        }   
         
         dude.behave();
         buffer.drawImage(tile_set, dude.source_x, 0, tile_size, tile_size, Math.round(dude.x), Math.round(dude.y), tile_size, tile_size);
@@ -202,4 +238,3 @@ window.onload = function init()
     window.addEventListener("keyup", (event) => { controller.keyDownUp(event); });
 
 };
-

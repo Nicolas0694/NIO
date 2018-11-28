@@ -142,8 +142,8 @@ window.onload = function init()
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                       19,19,19,19,19,19,0,0,19,19,19,19,19,19,19,19,
-                       19,19,19,19,19,19,0,0,19,19,19,19,19,19,19,19,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
                        18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
                        19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
@@ -174,6 +174,13 @@ window.onload = function init()
     var screen_w = document.documentElement.clientWidth - 16;
     var controller = new Controller();
     var platforms = [
+                     new Platform(0, -80, true, platformBehaviorX),
+                     new Platform(38, -80, true, platformBehaviorX),
+                     new Platform(76, -80, true, platformBehaviorX),
+                     new Platform(114, -80, true, platformBehaviorX),
+                     new Platform(152, -80, true, platformBehaviorX),
+                     new Platform(190, -80, true, platformBehaviorX),
+                     new Platform(228, -80, true, platformBehaviorX),
                      new Platform(50, -30, true, platformBehaviorX),
                      new Platform(50, -10, true, platformBehaviorY),
                      new Platform(96, 40, false, platformBehaviorX),

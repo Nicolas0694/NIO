@@ -1,10 +1,10 @@
 ## To do List
 
-### Structure 
+# Structure 
 - [ ] Remplacer le code actuel par des classes
 - [ ] Integrer le code de selection des niveaux
 
-### Ajouts 
+# Ajouts 
 - [ ] Integrer le script de gestion de camera
 
 

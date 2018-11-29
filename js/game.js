@@ -196,7 +196,7 @@ window.onload = function init()
 
     function increment(){
         i = i % 360 + 1;
-        floor += i*16;
+        floor += i+16;
     }
     
     

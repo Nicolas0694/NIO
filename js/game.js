@@ -86,11 +86,16 @@ var GF = function () {
                 gotoLevel2();
                 gotoLevel3();
                 gotoLevel4();
+                gotoLevel5();
+                gotoLevel6();
+                gotoLevel7();
                 
                 break;
                 
             case gameStates.level1:
 
+                
+                //console.log("Réussi");
                 
                 break;
                 
@@ -122,7 +127,7 @@ var GF = function () {
     function gotoLevel1()
     {
         
-               var buttonX = 400;
+               var buttonX = 300;
                 var buttonY = 300;
                 var buttonW = 50;
                 var buttonH = 50;
@@ -132,7 +137,7 @@ var GF = function () {
         ctx.fillStyle = '#ffcc99';
         ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
         ctx.fillStyle = "white";
-        ctx.fillText("1",420, 330);
+        ctx.fillText("1",320, 330);
         ctx.restore();
                 
                         
@@ -148,6 +153,8 @@ var GF = function () {
                 ) {
                     
                     Level1();
+                    //currentGameState = gameStates.level1;
+                    
                 }
                 });
     }
@@ -155,7 +162,7 @@ var GF = function () {
     function gotoLevel2()
     {
         
-               var buttonX = 480;
+               var buttonX = 380;
                 var buttonY = 300;
                 var buttonW = 50;
                 var buttonH = 50;
@@ -165,7 +172,7 @@ var GF = function () {
         ctx.fillStyle = '#3399ff';
         ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
         ctx.fillStyle = "Black";
-        ctx.fillText("2", 500, 330);
+        ctx.fillText("2", 400, 330);
         ctx.restore();
                 
                         
@@ -187,17 +194,17 @@ var GF = function () {
     function gotoLevel3()
     {
         
-               var buttonX = 560;
-                var buttonY = 300;
-                var buttonW = 50;
-                var buttonH = 50;
+        var buttonX = 460;
+        var buttonY = 300;
+        var buttonW = 50;
+        var buttonH = 50;
         
         // Render button
         ctx.save();
         ctx.fillStyle = 'grey';
         ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
         ctx.fillStyle = "Black";
-        ctx.fillText("3", 580, 330);
+        ctx.fillText("3", 480, 330);
         ctx.restore();
                 
                         
@@ -216,7 +223,111 @@ var GF = function () {
                 });
     }
     
-
+    function gotoLevel4()
+    {
+        
+               var buttonX = 540;
+                var buttonY = 300;
+                var buttonW = 50;
+                var buttonH = 50;
+        
+        // Render button
+        ctx.save();
+        ctx.fillStyle = '#ff8000';
+        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
+        ctx.fillStyle = "white";
+        ctx.fillText("4",560, 330);
+        ctx.restore();
+                
+                        
+        // Add event listener to canvas element
+        canvas.addEventListener('click', function(event) {
+                // Control that click event occurred within position of button
+                // NOTE: This assumes canvas is positioned at top left corner 
+                if (
+                    event.x > buttonX && 
+                    event.x < buttonX + buttonW &&
+                    event.y > buttonY && 
+                    event.y < buttonY + buttonH
+                ) {
+                    
+                    Level4();
+                    //currentGameState = gameStates.level1;
+                    
+                }
+                });
+    }
+    
+    function gotoLevel5()
+    {
+        
+               var buttonX = 620;
+                var buttonY = 300;
+                var buttonW = 50;
+                var buttonH = 50;
+        
+        // Render button
+        ctx.save();
+        ctx.fillStyle = '#330000';
+        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
+        ctx.fillStyle = "white";
+        ctx.fillText("5",640, 330);
+        ctx.restore();
+                
+                        
+        // Add event listener to canvas element
+        canvas.addEventListener('click', function(event) {
+                // Control that click event occurred within position of button
+                // NOTE: This assumes canvas is positioned at top left corner 
+                if (
+                    event.x > buttonX && 
+                    event.x < buttonX + buttonW &&
+                    event.y > buttonY && 
+                    event.y < buttonY + buttonH
+                ) {
+                    
+                    Level5();
+                    //currentGameState = gameStates.level1;
+                    
+                }
+                });
+    }
+    
+    function gotoLevel6()
+    {
+        
+        var buttonX = 700;
+                var buttonY = 300;
+                var buttonW = 50;
+                var buttonH = 50;
+        
+        // Render button
+        ctx.save();
+        ctx.fillStyle = '#00ff80';
+        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
+        ctx.fillStyle = "white";
+        ctx.fillText("6",720, 330);
+        ctx.restore();
+                
+                        
+        // Add event listener to canvas element
+        canvas.addEventListener('click', function(event) {
+                // Control that click event occurred within position of button
+                // NOTE: This assumes canvas is positioned at top left corner 
+                if (
+                    event.x > buttonX && 
+                    event.x < buttonX + buttonW &&
+                    event.y > buttonY && 
+                    event.y < buttonY + buttonH
+                ) {
+                    
+                    Level6();
+                    //currentGameState = gameStates.level1;
+                    
+                }
+                });
+    }
+    
     function loadAssets(callback) {
         // here we should load the souds, the sprite sheets etc.
         // then at the end call the callback function
@@ -264,3 +375,5 @@ var GF = function () {
         start: start
     };
 };
+
+

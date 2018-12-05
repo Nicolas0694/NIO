@@ -10,7 +10,7 @@ function Level1()
         switch(event.keyCode) {
             case 37: this.left = down; break;
             case 38: this.up = down; break;
-            case 39: this.right = down; break;
+            case 39: this.right = down; break;  
         }
     };
     
@@ -204,11 +204,19 @@ function Level1()
     
     
     /* animation */
-    function loop(time_step) {
+    function loop(time_step) {  
         window.requestAnimationFrame(loop);
         screen_h = 800;
         screen_w = 1000;
+
         
+        
+        //console.log(dude.y); // 17, 18, 19, 20 ... 
+        
+        if(dude.y > 200)
+        {
+            console.log("mort");
+        }
         
         if (screen_h / buffer.canvas.height < screen_w / buffer.canvas.width) screen_w = screen_h * map_ratio;
         
@@ -218,7 +226,12 @@ function Level1()
         context.canvas.height = screen_h;
         context.canvas.width = screen_w;
         context.imageSmoothingEnabled = false;
-        
+        /*
+        buffer.save();
+        buffer.fillStyle = "white";
+        buffer.fillText("Welcome in NIO Game!", 370, 50);
+        buffer.restore();
+        */
         for (let index = map.length - 1; index > -1; -- index) {
             let value = map[index];
             let tile_x = (index % map_columns) * tile_size;
@@ -734,6 +747,7 @@ function Level3()
         context.canvas.width = screen_w;
         context.imageSmoothingEnabled = false;
         
+        
         for (let index = map.length - 1; index > -1; -- index) {
             let value = map[index];
             let tile_x = (index % map_columns) * tile_size;
@@ -763,3 +777,4 @@ function Level3()
     window.addEventListener("keyup", (event) => { controller.keyDownUp(event); });
     
 }
+

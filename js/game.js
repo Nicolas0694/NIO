@@ -1,379 +1,240 @@
-// Inits
-window.onload = function init() {
-    var game = new GF();
-    game.start();
-};
-
-// GAME FRAMEWORK STARTS HERE
-var GF = function () {
-    // Vars relative to the canvas
-    var canvas, ctx, w, h;
-
-    // vars for handling inputs
-    var inputStates = {};
-
-    // game states
-    var gameStates = {
-        startMenu: 0,
-        mainMenu: 1,
-        level1: 2,  
-        level2: 3,
-        level3 : 4,
-        gameOver: 5
+window.onload = function init() 
+{
+    const Controller = function() {
+        this.left = this.right = this.up = false;
     };
-    var currentGameState = gameStates.startMenu;
-    var currentLevel = 1;
-
-
-    // clears the canvas content
-    function clearCanvas() {
-        ctx.clearRect(0, 0, w, h);
-    }
     
-    var mainLoop = function (time) {
-        //main function, called each frame 
-        measureFPS(time);
-
-        // number of ms since last frame draw
-        delta = timer(time);
-
-        // Clear the canvas
-        clearCanvas();
-
-        switch (currentGameState) {
-                
-            case gameStates.startMenu:
-            
-                ctx.save();
-                ctx.fillStyle = "white";
-                ctx.fillText("Welcome in NIO Game!", 370, 50);
-                ctx.restore();
-                   // Button position and dimensions
-                var buttonX = 400;
-                var buttonY = 300;
-                var buttonW = 100;
-                var buttonH = 30;
- 
-                // Render button
-                ctx.save();
-                ctx.fillStyle = 'blue';
-                ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
-                ctx.fillStyle = "Black";
-                ctx.fillText("Play!", 420, 320);
-                ctx.restore();
-
-        
-                // Add event listener to canvas element
-                canvas.addEventListener('click', function(event) {
-                    // Control that click event occurred within position of button
-                    // NOTE: This assumes canvas is positioned at top left corner 
-                if (
-                    event.x > buttonX && 
-                    event.x < buttonX + buttonW &&
-                    event.y > buttonY && 
-                    event.y < buttonY + buttonH
-                ) {
-                    startNewGame();
-                }
-                });
-                
-
-                break;
-                       
-            case gameStates.mainMenu:
-                
-                gotoLevel1();
-                gotoLevel2();
-                gotoLevel3();
-                gotoLevel4();
-                gotoLevel5();
-                gotoLevel6();
-                gotoLevel7();
-                
-                break;
-                
-            case gameStates.level1:
-
-                
-                //console.log("Réussi");
-                
-                break;
-                
-            case gameStates.level2:
-
-                
-                break;                        
-                
-            case gameStates.level3:
-
-                
-                break;   
-                
-            case gameStates.gameOver:
-
-                break;
+    Controller.prototype.keyDownUp = function(event) {
+        var down = event.type == "keydown" ? true : false;
+        switch(event.keyCode) {
+            case 37: this.left = down; break;
+            case 38: this.up = down; break;
+            case 39: this.right = down; break;
         }
-
-        // call the animation loop every 1/60th of second
-        requestAnimationFrame(mainLoop);
     };
-
-    function startNewGame() {
-        
-        currentGameState = gameStates.mainMenu;
-    }
-
-
-    function gotoLevel1()
-    {
-        
-               var buttonX = 300;
-                var buttonY = 300;
-                var buttonW = 50;
-                var buttonH = 50;
-        
-        // Render button
-        ctx.save();
-        ctx.fillStyle = '#ffcc99';
-        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
-        ctx.fillStyle = "white";
-        ctx.fillText("1",320, 330);
-        ctx.restore();
-                
-                        
-        // Add event listener to canvas element
-        canvas.addEventListener('click', function(event) {
-                // Control that click event occurred within position of button
-                // NOTE: This assumes canvas is positioned at top left corner 
-                if (
-                    event.x > buttonX && 
-                    event.x < buttonX + buttonW &&
-                    event.y > buttonY && 
-                    event.y < buttonY + buttonH
-                ) {
-                    
-                    Level1();
-                    //currentGameState = gameStates.level1;
-                    
-                }
-                });
-    }
     
-    function gotoLevel2()
-    {
-        
-               var buttonX = 380;
-                var buttonY = 300;
-                var buttonW = 50;
-                var buttonH = 50;
-        
-        // Render button
-        ctx.save();
-        ctx.fillStyle = '#3399ff';
-        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
-        ctx.fillStyle = "Black";
-        ctx.fillText("2", 400, 330);
-        ctx.restore();
-                
-                        
-        // Add event listener to canvas element
-        canvas.addEventListener('click', function(event) {
-                // Control that click event occurred within position of button
-                // NOTE: This assumes canvas is positioned at top left corner 
-                if (
-                    event.x > buttonX && 
-                    event.x < buttonX + buttonW &&
-                    event.y > buttonY && 
-                    event.y < buttonY + buttonH
-                ) {
-                    Level2();
-                }
-                });
-    }
+    const Player = function(x, y, source_x, source_w, behavior) {
+        this.source_x = source_x;
+        this.source_w = source_w;
+        this.behavior = behavior;
+        this.ox = this.x = x;
+        this.oy = this.y = y;
+        this.vx = this.vy = 0;
+    };
+    Player.prototype = {
+        behave:function() { this.behavior(this); },
+    };
     
-    function gotoLevel3()
-    {
-        
-        var buttonX = 460;
-        var buttonY = 300;
-        var buttonW = 50;
-        var buttonH = 50;
-        
-        // Render button
-        ctx.save();
-        ctx.fillStyle = 'grey';
-        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
-        ctx.fillStyle = "Black";
-        ctx.fillText("3", 480, 330);
-        ctx.restore();
-                
-                        
-        // Add event listener to canvas element
-        canvas.addEventListener('click', function(event) {
-                // Control that click event occurred within position of button
-                // NOTE: This assumes canvas is positioned at top left corner 
-                if (
-                    event.x > buttonX && 
-                    event.x < buttonX + buttonW &&
-                    event.y > buttonY && 
-                    event.y < buttonY + buttonH
-                ) {
-                    Level3();
-                }
-                });
-    }
+    const Dude = function(x, y, behavior) {
+        Player.call(this, x, y, 240, 1, behavior);
+        this.jumping = false;
+    };
     
-    function gotoLevel4()
-    {
-        
-               var buttonX = 540;
-                var buttonY = 300;
-                var buttonW = 50;
-                var buttonH = 50;
-        
-        // Render button
-        ctx.save();
-        ctx.fillStyle = '#ff8000';
-        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
-        ctx.fillStyle = "white";
-        ctx.fillText("4",560, 330);
-        ctx.restore();
-                
-                        
-        // Add event listener to canvas element
-        canvas.addEventListener('click', function(event) {
-                // Control that click event occurred within position of button
-                // NOTE: This assumes canvas is positioned at top left corner 
-                if (
-                    event.x > buttonX && 
-                    event.x < buttonX + buttonW &&
-                    event.y > buttonY && 
-                    event.y < buttonY + buttonH
-                ) {
-                    
-                    Level4();
-                    //currentGameState = gameStates.level1;
-                    
-                }
-                });
-    }
+    Object.assign(Dude.prototype, Player.prototype);
     
-    function gotoLevel5()
-    {
+    function dudeBehavior(dude) {
+        if (!dude.jumping && controller.up) {
+            controller.up = false;
+            dude.vy -= 10;
+            dude.jumping = true;
+        }
         
-               var buttonX = 620;
-                var buttonY = 300;
-                var buttonW = 50;
-                var buttonH = 50;
-        
-        // Render button
-        ctx.save();
-        ctx.fillStyle = '#330000';
-        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
-        ctx.fillStyle = "white";
-        ctx.fillText("5",640, 330);
-        ctx.restore();
-                
-                        
-        // Add event listener to canvas element
-        canvas.addEventListener('click', function(event) {
-                // Control that click event occurred within position of button
-                // NOTE: This assumes canvas is positioned at top left corner 
-                if (
-                    event.x > buttonX && 
-                    event.x < buttonX + buttonW &&
-                    event.y > buttonY && 
-                    event.y < buttonY + buttonH
-                ) {
-                    
-                    Level5();
-                    //currentGameState = gameStates.level1;
-                    
-                }
-                });
-    }
-    
-    function gotoLevel6()
-    {
-        
-        var buttonX = 700;
-                var buttonY = 300;
-                var buttonW = 50;
-                var buttonH = 50;
-        
-        // Render button
-        ctx.save();
-        ctx.fillStyle = '#00ff80';
-        ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
-        ctx.fillStyle = "white";
-        ctx.fillText("6",720, 330);
-        ctx.restore();
-                
-                        
-        // Add event listener to canvas element
-        canvas.addEventListener('click', function(event) {
-                // Control that click event occurred within position of button
-                // NOTE: This assumes canvas is positioned at top left corner 
-                if (
-                    event.x > buttonX && 
-                    event.x < buttonX + buttonW &&
-                    event.y > buttonY && 
-                    event.y < buttonY + buttonH
-                ) {
-                    
-                    Level6();
-                    //currentGameState = gameStates.level1;
-                    
-                }
-                });
-    }
-    
-    function loadAssets(callback) {
-        // here we should load the souds, the sprite sheets etc.
-        // then at the end call the callback function
-
-        // simple example that loads a sound and then calls the callback. We used the howler.js WebAudio lib here.
-        // Load sounds asynchronously using howler.js
-        plopSound = new Howl({
-            urls: ['http://mainline.i3s.unice.fr/mooc/plop.mp3'],
-            autoplay: false,
-            volume: 1,
-            onload: function () {
-                console.log("all sounds loaded");
-                // We're done!
-                callback();
+        if (controller.left)
+        {
+            if(dude.x > 55)
+            {
+                dude.vx -= 0.75;
             }
-        });
-    }
-    var start = function () {
-        initFPSCounter();
-
-        // Canvas, context etc.
-        canvas = document.querySelector("#myCanvas");
-
-        // often useful
-        w = canvas.width;
-        h = canvas.height;
-
-        // important, we will draw with this object
-        ctx = canvas.getContext('2d');
-        // default police for text
-        ctx.font = "20px Arial";
-
+            
+        } 
         
-        // Create the different key and mouse listeners
-        //addListeners(inputStates, canvas);
-
-        loadAssets(function () {
-            // all assets (images, sounds) loaded, we can start the animation
-            requestAnimationFrame(mainLoop);
-        });
+        if (controller.right) 
+        {
+            if(dude.x < 185)
+            {
+                dude.vx += 0.75;
+            }
+        }
+        var airborne = true;
+        dude.vy += gravity;
+        dude.oy = dude.y;
+        dude.ox = dude.x;
+        dude.y += dude.vy;
+        dude.x += dude.vx;
+        if (dude.y > floor) {
+            airborne = false;
+            dude.y = floor;
+            dude.vy = 0;
+            dude.jumping = false;
+            dude.vx -= dude.vx * friction;
+        }
+        
+        for (let index = platforms.length - 1; index > -1; -- index) {
+            let platform = platforms[index];
+            if (dude.x + tile_size * 0.5 > platform.left && dude.x + tile_size * 0.5 < platform.right) {
+                if (dude.y + tile_size > platform.floor && dude.oy + tile_size <= platform.oldFloor) {
+                    airborne = false;
+                    dude.y = platform.floor - tile_size;
+                    dude.vy = platform.vy;
+                    dude.jumping = false;
+                    dude.vx += (platform.vx - dude.vx) * friction;
+                }
+            }
+        }
+        
+        if (dude.jumping || airborne) {
+            dude.vx -= dude.vx * friction;
+        }
+    }
+    
+    const Platform = function(x, y, big, behavior) 
+    {
+        Player.call(this, x, y, big ? 160 : 208, big ? 46 : 30, behavior);
+        this.anchor_x = x;
+        this.anchor_y = y;
+        this.d = 0;
+        this.w = big ? 32 : 16;
+    }
+    
+    Platform.prototype = {
+        get floor() { return this.y + ((i*10)+4); },
+        get oldFloor() { return this.oy + ((i*10)+4); },
+        get left() { return this.x + 3; },
+        get right() { return this.x + 9 + this.w; }
     };
+    
+    Object.assign(Platform.prototype, Player.prototype);
+    
+    function platformBehaviorX(platform) {
+        platform.d += 0.01;
+        platform.ox = platform.x;                                //Vitesse déplacement
+        platform.vx = platform.anchor_x + Math.cos(platform.d) * 40 - platform.x;
+        platform.x += platform.vx;
+    }
+    
+    function platformBehaviorY(platform) {
+        platform.d += 0.01;
+        platform.oy = platform.y;
+        platform.vy = platform.anchor_y + Math.sin(platform.d) * 40 - platform.y;
+        platform.y += platform.vy;
+    }
+    
+    function platformBehaviorXY(platform) {
+        platform.d += 0.01
+        platform.ox = platform.x;
+        platform.vx = platform.anchor_x + Math.cos(platform.d) * 40 - platform.x;
+        platform.x += platform.vx;
+        platform.oy = platform.y;
+        platform.vy = platform.anchor_y + Math.sin(platform.d) * 40 - platform.y;
+        platform.y += platform.vy;
+    }
+    
+    var tile_set = new Image();
+    var tile_size = 16;
+    var map_columns = 16;
+    var map_rows = 12;
+    var map_ratio = map_columns / map_rows;
+    var map_scale = 1;
+    var map =         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       19,19,19,19,19,19,0,0,19,19,19,19,19,19,19,19,
+                       19,19,19,19,19,19,0,0,19,19,19,19,19,19,19,19,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,4,5,6,0,0,0,0,0,0,22,16,17,
+                       19,19,21,0,7,8,9,0,0,4,6,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,7,9,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,4,5,6,0,0,0,0,0,22,16,17,
+                       19,19,21,0,0,7,8,9,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,0,0,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,4,6,0,0,22,16,17,
+                       19,19,21,0,0,0,0,0,0,7,9,0,0,22,19,19,
+                       18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
+                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19
+                     ];
+    var floor = 166;
+    var friction = 0.3;
+    var gravity = 1;
+    var canvas = document.querySelector("#myCanvas");
+    var context = canvas.getContext("2d");
+    var buffer = document.createElement("canvas").getContext("2d");
+    var screen_h = document.documentElement.clientHeight - 16;
+    var screen_w = document.documentElement.clientWidth - 16;
+    var controller = new Controller();
+    var platforms = [
+                     new Platform(50, -30, true, platformBehaviorX),
+                     new Platform(50, -10, true, platformBehaviorY),
+                     new Platform(96, 40, false, platformBehaviorX),
+                     new Platform(160, 64, false, platformBehaviorXY),
+                     new Platform(96, 96, true, platformBehaviorX),
+                     new Platform(50, 130, false, platformBehaviorY) 
+                     ];
+    var dude = new Dude(100, 100, dudeBehavior);
+    
+    var i = 0;
 
-    //our GameFramework returns a public API visible from outside its scope
-    return {
-        start: start
-    };
+    var interval = setInterval(increment, 3000);
+
+    function increment(){
+        i = i % 360 + 1;
+        floor += i*16;
+    }
+    
+    
+    /* animation */
+    function loop(time_step) {
+        window.requestAnimationFrame(loop);
+        console.log(dude.y);
+        screen_h = document.documentElement.clientHeight - 16;
+        screen_w = document.documentElement.clientWidth - 16;
+        
+        if (screen_h / buffer.canvas.height < screen_w / buffer.canvas.width) screen_w = screen_h * map_ratio;
+        
+        else screen_h = screen_w / map_ratio;
+        
+        map_scale = screen_h / (map_rows * tile_size);
+        context.canvas.height = screen_h;
+        context.canvas.width = screen_w;
+        context.imageSmoothingEnabled = false;
+        
+        for (let index = map.length - 1; index > -1; -- index) {
+            let value = map[index];
+            let tile_x = (index % map_columns) * tile_size;
+            let tile_y = Math.floor(index / map_columns + i) * tile_size - 250;
+            buffer.drawImage(tile_set, value * 16, 0, tile_size, tile_size, tile_x, tile_y, tile_size, tile_size);
+            
+        }
+        
+        for (let index = platforms.length - 1; index > -1; -- index) {
+            let platform = platforms[index];        
+            platform.behave();
+            // platform.y -= dude.y ?
+            buffer.drawImage(tile_set, platform.source_x, 0, platform.source_w, tile_size+1, Math.round(platform.x), Math.round(platform.y + (i*10)), platform.source_w, tile_size);
+            
+        }   
+        
+        dude.behave();
+        buffer.drawImage(tile_set, dude.source_x, 0, tile_size, tile_size, Math.round(dude.x), Math.round(dude.y), tile_size, tile_size);
+        context.drawImage(buffer.canvas, 0, 0, buffer.canvas.width, buffer.canvas.height, 0, 0, context.canvas.width, context.canvas.height);
+    }
+    
+    buffer.canvas.height = map_rows * tile_size;
+    buffer.canvas.width = map_columns * tile_size;
+    tile_set.addEventListener("load", (event) => { loop(); });
+    tile_set.src = "assets/background.png";
+    window.addEventListener("keydown", (event) => { controller.keyDownUp(event); });
+    window.addEventListener("keyup", (event) => { controller.keyDownUp(event); });
+
 };
-
-

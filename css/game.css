@@ -1,4 +1,5 @@
-* { margin:0; padding:0; }
-html, body { height:100%; width:100%; }
-body { background-color:#000000; display:grid; }
-canvas { align-self:center; justify-self:center; }
+canvas {
+    border: 1px solid black;
+    /*background-image: url(http://image.noelshack.com/fichiers/2018/48/5/1543542314-test.png);*/
+    background: black;
+  }

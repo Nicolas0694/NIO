@@ -148,6 +148,48 @@ var GF = function () {
         died = false;
     }
 
+    /* genere des map de maniere aléatoire */
+    function genMap(x,y){
+        var map = Array();
+        var ligneAvant = null;
+        /* les premieres 9 lignes de 0 */
+        for(let j=0;j<16*9;j++){
+            map.push(0);
+        }
+        for(let i=0;i<(x*y-16*9)-16;i++){
+            /* %2 pour alterner les sprites des côtées */
+            if((i%2)){
+                map.push([19,19,21]);
+                /* ici faut generer les platformes du niveau de manière coherente */
+                map.push(genLignePlatforme(ligneAvant));
+                map.push([22,19,19]);
+            }
+            else{
+                map.push([18,20,21]);
+                /* ici faut generer les platformes du niveau de manière coherente */
+                map.push(genLignePlatforme(ligneAvant));
+                map.push([22,16,17]);
+            }
+        }
+        map.push([19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19]);
+        
+        return map;
+    }
+
+    /* genere une ligne de platforme */
+    function genLignePlatforme(ligneAvant){
+        /* a faire */
+        /* premiere ligne genere ... */
+        if(ligneAvant === null){
+
+        }
+        else{
+            /* definir des "types de lignes" */ 
+            /* if(ligneAvant === typeXYZ) alors generer typeZYX par ex ... */
+        }
+        /* faut que ce soir coherent avec la ligne d'avant (peut etre passer en param la ligne d'avant ???) */
+    }
+
     
     function goToLevel1()
     {

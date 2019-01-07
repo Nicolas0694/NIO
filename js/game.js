@@ -132,6 +132,22 @@ var GF = function () {
         currentGameState = gameStates.mainMenu;
     }
 
+    /* fonction qui gere les respawn du joueur lorsque il reaparait suite a une mort */
+    function respawn(floor){
+        dude = new Dude(100, 100, dudeBehavior);
+        tile_size = 16;
+        map_columns = 16;
+        map_rows = 12;
+        map_ratio = map_columns / map_rows;
+        map_scale = 1;
+        floor = floor;
+        friction = 0.3;
+        gravity = 0.5;
+        controller = new Controller();
+        i = 0;
+        died = false;
+    }
+
     
     function goToLevel1()
     {
@@ -288,7 +304,9 @@ var GF = function () {
                 {
                     if(controller.space)
                     {
-                        dude = new Dude(100, 100, dudeBehavior);
+                        /* test avec une fonction respawn(floor) pour eviter les repetitions */
+                        respawn(166);
+                        /*dude = new Dude(100, 100, dudeBehavior);
                         tile_size = 16;
                         map_columns = 16;
                         map_rows = 12;
@@ -302,7 +320,7 @@ var GF = function () {
 
     
                         i = 0;
-                        died = false;
+                        died = false;*/
                     }
                     
 

@@ -690,7 +690,7 @@ var GF = function () {
 
         // simple example that loads a sound and then calls the callback. We used the howler.js WebAudio lib here.
         // Load sounds asynchronously using howler.js
-        plopSound = new Howl({
+        /*plopSound = new Howl({
             urls: ['http://mainline.i3s.unice.fr/mooc/plop.mp3'],
             autoplay: false,
             volume: 1,
@@ -699,7 +699,8 @@ var GF = function () {
                 // We're done!
                 callback();
             }
-        });
+        });*/
+        callback();
     }
     var start = function () {
         initFPSCounter();

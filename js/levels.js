@@ -43,23 +43,6 @@ const Controller = function() {
             dude.vy -= 7.5;
             dude.jumping = true;
         }
-        
-        if (controller.left)
-        {
-            if(dude.x > 55)
-            {
-                dude.vx -= 0.5;
-            }
-            
-        } 
-        
-        if (controller.right) 
-        {
-            if(dude.x < 185)
-            {
-                dude.vx += 0.5;
-            }
-        }
             
         }
         
@@ -155,22 +138,9 @@ const Controller = function() {
     var screen_w = 1000;
     var controller = new Controller();
             
-    var platforms = [
-                     new Platform(0, -80, true, platformBehaviorX),
-                     new Platform(38, -80, true, platformBehaviorX),
-                     new Platform(76, -80, true, platformBehaviorX),
-                     new Platform(114, -80, true, platformBehaviorX),
-                     new Platform(152, -80, true, platformBehaviorX),
-                     new Platform(190, -80, true, platformBehaviorX),
-                     new Platform(228, -80, true, platformBehaviorX),
-                     new Platform(50, -30, true, platformBehaviorX),
-                     new Platform(50, -10, true, platformBehaviorY),
-                     new Platform(96, 40, false, platformBehaviorX),
-                     new Platform(160, 64, false, platformBehaviorXY),
-                     new Platform(96, 96, true, platformBehaviorX),
-                     new Platform(50, 130, false, platformBehaviorY) 
-                     ];
-var dude = new Dude(100, 100, dudeBehavior);
+    var platforms = [];
+
+    var dude = new Dude(100, 100, dudeBehavior);
     
     var i = 0;
     

@@ -18,7 +18,7 @@ Les niveaux se font à la verticale et la vitesse de progression est laissée po
 
 Le joueur sélectionne un niveau pour le lancer, et le suivant se débloque une fois celui d'avant terminé. Quand un des objets est récupéré il vient s'ajouter au ménu principal de séléction des niveaux, le joueur pourra ainsi suivre sa progression à travers les objets obtenus.
 
-##Interêts techniques 
+## Interêts techniques 
 
 * Utilisation de images png composés de sprites 16*16px rendant simple l'ajout et modification des graphismes utilisés
 * Création de nouveaux niveaux facile ainsi que la modification de l'environment graphique de ceux-ci grâce aux sprites

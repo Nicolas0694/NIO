@@ -6,8 +6,8 @@ window.onload = function init() {
 };
 
 var canvas, ctx, w, h;    
-var level2IsLock, level3IsLock, level4IsLock, level5IsLock, level6IsLock;
-var textLock2, textLock3, textLock4, textLock5;
+var level2IsLock, level3IsLock, level4IsLock, level5IsLock;
+var finishWord;
 var win;
 // GAME FRAMEWORK STARTS HERE
 var GF = function () {
@@ -182,7 +182,7 @@ var GF = function () {
                     currentGameState = gameStates.level1;
                     
                     
-                    dude = new Dude(100, 100, dudeBehavior);
+                    dude = new Dude(100, 150, dudeBehavior);
                     tile_size = 16;
                     map_columns = 16;
                     map_rows = 12;
@@ -192,7 +192,7 @@ var GF = function () {
                     floor = 150;
                     friction = 0.3;
                     gravity = 0.5;
-                    controller = new Controller();
+                    controller = new Controller();  
                     
                     platforms = [
                      new Platform(0, -80, true, platformBehaviorX),
@@ -227,7 +227,7 @@ var GF = function () {
         
         // Render button
         ctx.save();
-        if(level2IsLock === false)
+        if(level2IsLock === "false")
         {
         ctx.fillStyle = '#008000';
         }
@@ -237,14 +237,6 @@ var GF = function () {
         }
         ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
         ctx.restore();
-        
-        if(textLock2 === true)
-        {
-            ctx.save();
-            ctx.fillStyle = "white";
-            ctx.fillText("Le niveau 2 n'est pas débloqué !", 370, 50);
-            ctx.restore();
-        }
                 
                         
         // Add event listener to canvas element
@@ -257,11 +249,10 @@ var GF = function () {
                     event.y > buttonY && 
                     event.y < buttonY + buttonH
                 ) {
-                    if(level2IsLock === false)
+                    if(level2IsLock === "false")
                     {
+                    
                     currentGameState = gameStates.level2;
-                    
-                    
                     dude = new Dude(100, 100, dudeBehavior);
                     tile_size = 16;
                     map_columns = 16;
@@ -274,23 +265,29 @@ var GF = function () {
                     gravity = 0.5;
                     controller = new Controller();
                     
+                    
                     platforms = [
+                     new Platform(0, -270, true, platformBehaviorX),
+                     new Platform(38, -270, true, platformBehaviorX),
+                     new Platform(76, -270, true, platformBehaviorX),
+                     new Platform(114, -270, true, platformBehaviorX),
+                     new Platform(152, -270, true, platformBehaviorX),
+                     new Platform(190, -270, true, platformBehaviorX),
+                     new Platform(228, -270, true, platformBehaviorX),
+                     new Platform(200, -200, false, platformBehaviorY),
+                     new Platform(160, -150, false, platformBehaviorXY),
+                     new Platform(200, -70, false, platformBehaviorX),
+                     new Platform(100, -70, true, platformBehaviorY),
+                     new Platform(20, 0, true, platformBehaviorX),
+                     new Platform(96, 30, true, platformBehaviorX),
                      new Platform(160, 64, false, platformBehaviorXY),
-                     new Platform(96, 96, true, platformBehaviorX),
-                     new Platform(50, 100, false, platformBehaviorY)
+                     new Platform(96, 96, true, platformBehaviorX)
                      ];
 
     
                     i = 0;
                     died = false;
                     
-                    }
-                    else
-                    {
-                        textLock2 = true;
-                        textLock3 = false;
-                        textLock4 = false;
-                        textLock5 = false;
                     }
                     
                     
@@ -308,17 +305,16 @@ var GF = function () {
         
         // Render button
         ctx.save();
+        if(level3IsLock === "false")
+        {
+        ctx.fillStyle = '#008000';
+        }
+        else
+        {
         ctx.fillStyle = '#FF0000';
+        }
         ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
         ctx.restore();
-        
-        if(textLock3 === true)
-        {
-            ctx.save();
-            ctx.fillStyle = "white";
-            ctx.fillText("Le niveau 3 n'est pas débloqué !", 370, 50);
-            ctx.restore();
-        }
                         
         // Add event listener to canvas element
         canvas.addEventListener('click', function(event) {
@@ -331,7 +327,7 @@ var GF = function () {
                     event.y < buttonY + buttonH
                 ) {
                     
-                    if(level3IsLock === false)
+                    if(level3IsLock === "false")
                     {
                     
                     currentGameState = gameStates.level3;
@@ -347,33 +343,33 @@ var GF = function () {
                     gravity = 0.5;
                     controller = new Controller();
                     
+                    
                     platforms = [
+                     new Platform(0, -350, true, platformBehaviorX),
+                     new Platform(38, -350, true, platformBehaviorX),
+                     new Platform(76, -350, true, platformBehaviorX),
+                     new Platform(114, -350, true, platformBehaviorX),
+                     new Platform(152, -350, true, platformBehaviorX),
+                     new Platform(190, -350, true, platformBehaviorX),
+                     new Platform(228, -350, true, platformBehaviorX),
+                     new Platform(200, -300, true, platformBehaviorX),
+                     new Platform(150, -250, true, platformBehaviorX),
+                     new Platform(100, -200, true, platformBehaviorX),
+                     new Platform(50, -150, true, platformBehaviorX),
+                     new Platform(0, -100, false, platformBehaviorY),
                      new Platform(0, -80, true, platformBehaviorX),
-                     new Platform(38, -80, true, platformBehaviorX),
-                     new Platform(76, -80, true, platformBehaviorX),
-                     new Platform(114, -80, true, platformBehaviorX),
-                     new Platform(152, -80, true, platformBehaviorX),
-                     new Platform(190, -80, true, platformBehaviorX),
-                     new Platform(228, -80, true, platformBehaviorX),
-                     new Platform(50, -30, true, platformBehaviorX),
-                     new Platform(50, -10, true, platformBehaviorY),
-                     new Platform(96, 40, false, platformBehaviorX),
-                     new Platform(160, 64, false, platformBehaviorXY),
-                     new Platform(96, 96, true, platformBehaviorX),
-                     new Platform(50, 130, false, platformBehaviorY)
+                     new Platform(100, -50, true, platformBehaviorXY),
+                     new Platform(40, 40, true, platformBehaviorX),
+                     new Platform(10, 40, true, platformBehaviorX),
+                     new Platform(-25, 40, true, platformBehaviorX),
+                     new Platform(-50, 40, true, platformBehaviorX),
+                     new Platform(160, 84, false, platformBehaviorX)
                      ];
 
     
                     i = 0;
                     died = false;
                     
-                    }
-                    else
-                    {
-                        textLock3 = true;
-                        textLock2 = false;
-                        textLock4 = false;
-                        textLock5 = false;
                     }
                     
                     
@@ -390,17 +386,16 @@ var GF = function () {
         
         // Render button
         ctx.save();
+        if(level4IsLock === "false")
+        {
+        ctx.fillStyle = '#008000';
+        }
+        else
+        {
         ctx.fillStyle = '#FF0000';
+        }
         ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
         ctx.restore();
-                
-        if(textLock4 === true)
-        {
-            ctx.save();
-            ctx.fillStyle = "white";
-            ctx.fillText("Le niveau 4 n'est pas débloqué !", 370, 50);
-            ctx.restore();
-        }
                         
         // Add event listener to canvas element
         canvas.addEventListener('click', function(event) {
@@ -413,7 +408,7 @@ var GF = function () {
                     event.y < buttonY + buttonH
                 ) {
                     
-                    if(level4IsLock === false)
+                    if(level4IsLock === "false")
                      {
                     currentGameState = gameStates.level4;
                     dude = new Dude(100, 100, dudeBehavior);
@@ -429,6 +424,18 @@ var GF = function () {
                     controller = new Controller();
                     
                     platforms = [
+                     new Platform(0, -370, true, platformBehaviorX),
+                     new Platform(38, -370, true, platformBehaviorX),
+                     new Platform(76, -370, true, platformBehaviorX),
+                     new Platform(114, -370, true, platformBehaviorX),
+                     new Platform(152, -370, true, platformBehaviorX),
+                     new Platform(190, -370, true, platformBehaviorX),
+                     new Platform(228, -370, true, platformBehaviorX),
+                     new Platform(100, -280, false, platformBehaviorXY),
+                     new Platform(160, -250, false, platformBehaviorY),
+                     new Platform(110, -200, false, platformBehaviorY),
+                     new Platform(60, -150, false, platformBehaviorY),
+                     new Platform(10, -100, false, platformBehaviorY),
                      new Platform(0, -80, true, platformBehaviorX),
                      new Platform(38, -80, true, platformBehaviorX),
                      new Platform(76, -80, true, platformBehaviorX),
@@ -436,25 +443,16 @@ var GF = function () {
                      new Platform(152, -80, true, platformBehaviorX),
                      new Platform(190, -80, true, platformBehaviorX),
                      new Platform(228, -80, true, platformBehaviorX),
-                     new Platform(50, -30, true, platformBehaviorX),
-                     new Platform(50, -10, true, platformBehaviorY),
-                     new Platform(96, 40, false, platformBehaviorX),
+                     new Platform(140, -20, false, platformBehaviorXY),
+                     new Platform(200, 30, false, platformBehaviorX),
                      new Platform(160, 64, false, platformBehaviorXY),
-                     new Platform(96, 96, true, platformBehaviorX),
-                     new Platform(50, 130, false, platformBehaviorY)
+                     new Platform(96, 96, false, platformBehaviorX)
                      ];
 
     
                     i = 0;
                     died = false;
                     
-                    }
-                    else
-                    {
-                        textLock4 = true;
-                        textLock2 = false;
-                        textLock3 = false;
-                        textLock5 = false;
                     }
                     
                     
@@ -471,17 +469,24 @@ var GF = function () {
         
         // Render button
         ctx.save();
+        if(level5IsLock === "false")
+        {
+        ctx.fillStyle = '#008000';
+        }
+        else
+        {
         ctx.fillStyle = '#FF0000';
+        }
         ctx.fillRect(buttonX, buttonY, buttonW, buttonH);
+        
+        if(finishWord === "false")
+        {
+           ctx.font = 'italic 40pt Calibri';
+           ctx.fillStyle = "green";
+           ctx.fillText("You Finished the game !", 250, 500);
+        }
         ctx.restore();
         
-        if(textLock5 === true)
-        {
-            ctx.save();
-            ctx.fillStyle = "white";
-            ctx.fillText("Le niveau 5 n'est pas débloqué !", 370, 50);
-            ctx.restore();
-        }
                 
                         
         // Add event listener to canvas element
@@ -495,7 +500,7 @@ var GF = function () {
                     event.y < buttonY + buttonH
                 ) {
                     
-                    if(level5IsLock === false)
+                    if(level5IsLock === "false")
                     {
                     currentGameState = gameStates.level5;
                     dude = new Dude(100, 100, dudeBehavior);
@@ -511,6 +516,63 @@ var GF = function () {
                     controller = new Controller();
                     
                     platforms = [
+                     new Platform(0, -1600, true, platformBehaviorX),
+                     new Platform(38, -1600, true, platformBehaviorX),
+                     new Platform(76, -1600, true, platformBehaviorX),
+                     new Platform(114, -1600, true, platformBehaviorX),
+                     new Platform(152, -1600, true, platformBehaviorX),
+                     new Platform(190, -1600, true, platformBehaviorX),
+                     new Platform(228, -1600, true, platformBehaviorX),
+                     new Platform(100, -1500, false, platformBehaviorXY),
+                     new Platform(160, -1450, false, platformBehaviorY),
+                     new Platform(110, -1450, false, platformBehaviorY),
+                     new Platform(60, -1380, false, platformBehaviorY),
+                     new Platform(10, -1380, false, platformBehaviorY),
+                     new Platform(0, -1310, true, platformBehaviorX),
+                     new Platform(38, -1310, true, platformBehaviorX),
+                     new Platform(76, -1310, true, platformBehaviorX),
+                     new Platform(114, -1310, true, platformBehaviorX),
+                     new Platform(152, -1310, true, platformBehaviorX),
+                     new Platform(190, -1310, true, platformBehaviorX),
+                     new Platform(228, -1310, true, platformBehaviorX),
+                     new Platform(140, -1250, false, platformBehaviorXY),
+                     new Platform(200, -1200, false, platformBehaviorX),
+                     new Platform(160, -1150, false, platformBehaviorXY),
+                     new Platform(96, -1150, false, platformBehaviorX),
+                     new Platform(0, -1100, true, platformBehaviorX),
+                     new Platform(38, -1100, true, platformBehaviorX),
+                     new Platform(76, -1100, true, platformBehaviorX),
+                     new Platform(114, -1100, true, platformBehaviorX),
+                     new Platform(152, -1100, true, platformBehaviorX),
+                     new Platform(190, -1100, true, platformBehaviorX),
+                     new Platform(228, -1100, true, platformBehaviorX),
+                     new Platform(200, -1040, true, platformBehaviorX),
+                     new Platform(150, -980, true, platformBehaviorX),
+                     new Platform(100, -920, true, platformBehaviorX),
+                     new Platform(50, -860, true, platformBehaviorX),
+                     new Platform(0, -810, false, platformBehaviorY),
+                     new Platform(0, -730, true, platformBehaviorX),
+                     new Platform(100, -700, true, platformBehaviorXY),
+                     new Platform(40, -600, true, platformBehaviorX),
+                     new Platform(10, -600, true, platformBehaviorX),
+                     new Platform(-25, -600, true, platformBehaviorX),
+                     new Platform(-50, -600, true, platformBehaviorX),
+                     new Platform(160, -540, false, platformBehaviorX),
+                     new Platform(0, -500, true, platformBehaviorX),
+                     new Platform(38, -500, true, platformBehaviorX),
+                     new Platform(76, -500, true, platformBehaviorX),
+                     new Platform(114, -500, true, platformBehaviorX),
+                     new Platform(152, -500, true, platformBehaviorX),
+                     new Platform(190, -500, true, platformBehaviorX),
+                     new Platform(228, -500, true, platformBehaviorX),
+                     new Platform(200, -450, false, platformBehaviorY),
+                     new Platform(160, -400, false, platformBehaviorXY),
+                     new Platform(200, -360, false, platformBehaviorX),
+                     new Platform(100, -360, true, platformBehaviorY),
+                     new Platform(20, -300, true, platformBehaviorX),
+                     new Platform(96, -250, true, platformBehaviorX),
+                     new Platform(160, -200, false, platformBehaviorXY),
+                     new Platform(96, -150, true, platformBehaviorX),
                      new Platform(0, -80, true, platformBehaviorX),
                      new Platform(38, -80, true, platformBehaviorX),
                      new Platform(76, -80, true, platformBehaviorX),
@@ -522,21 +584,13 @@ var GF = function () {
                      new Platform(50, -10, true, platformBehaviorY),
                      new Platform(96, 40, false, platformBehaviorX),
                      new Platform(160, 64, false, platformBehaviorXY),
-                     new Platform(96, 96, true, platformBehaviorX),
-                     new Platform(50, 130, false, platformBehaviorY)
+                     new Platform(96, 96, true, platformBehaviorX)
                      ];
 
     
                     i = 0;
                     died = false;
                     
-                    }
-                    else
-                    {
-                        textLock5 = true;
-                        textLock2 = false;
-                        textLock3 = false;
-                        textLock4 = false;
                     }
                     
                     
@@ -547,7 +601,6 @@ var GF = function () {
     function Level1()
     {
 
-        console.log(dude.y);
         if (controller.left)
         {
             if(dude.x > 55)
@@ -570,7 +623,7 @@ var GF = function () {
                 {
                     if(controller.space)
                     {
-                        dude = new Dude(100, 100, dudeBehavior);
+                        dude = new Dude(100, 150, dudeBehavior);
                         tile_size = 16;
                         map_columns = 16;
                         map_rows = 12;
@@ -589,13 +642,27 @@ var GF = function () {
                     
 
                 }
+                // Win
+                if(i === 26)
+                {
+                    i = 25;
+                    win = true;
+                }
                 if(controller.q)
                     {
-                        textLock2, textLock3, textLock4, textLock5 = false;
                         currentGameState = gameStates.mainMenu;
-                        
                     }
             var map =  [
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -623,6 +690,12 @@ var GF = function () {
                        19,19,21,0,0,0,0,0,0,7,9,0,0,22,19,19,
                        18,20,21,0,0,0,0,0,0,0,0,0,0,22,16,17,
                        19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
+                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
+                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
+                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
+                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
+                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
+                       19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
                        19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19
                      ];
             
@@ -647,7 +720,7 @@ var GF = function () {
         for (let index = map.length - 1; index > -1; -- index) {
             let value = map[index];
             let tile_x = (index % map_columns) * tile_size;
-            let tile_y = Math.floor(index / map_columns + i) * tile_size - 250;
+            let tile_y = Math.floor(index / map_columns-10 + i) * tile_size - 250;
             buffer.drawImage(tile_set, value * 16, 0, tile_size, tile_size, tile_x, tile_y, tile_size, tile_size);
             
         }
@@ -664,10 +737,14 @@ var GF = function () {
         buffer.drawImage(tile_set, dude.source_x, 0, tile_size, tile_size, Math.round(dude.x), Math.round(dude.y), tile_size, tile_size);
         ctx.drawImage(buffer.canvas, 0, 0, buffer.canvas.width, buffer.canvas.height, 0, 0, ctx.canvas.width, ctx.canvas.height);
         
+        // Win
         if(win === true)
         {
+            level2IsLock = "false";
+            window.localStorage.setItem("level2Lock", false);
             if(controller.space)
             {
+                win = false;
                 currentGameState = gameStates.mainMenu;
             }
             ctx.save();            
@@ -678,16 +755,8 @@ var GF = function () {
             ctx.fillStyle = "green";
             ctx.fillText("You Win !", 370, 250);
             ctx.fillStyle = "white";
-            ctx.fillText("Press Space to go Menu", 230, 350);
+            ctx.fillText("Press Space to continue", 230, 350);
             ctx.restore();
-        }
-        
-        // Win the level
-        if(dude.y < -30)
-        {
-            win = true;
-            level2IsLock = false;
-            window.localStorage.setItem("level2Lock", false);
         }
         
         // Die
@@ -773,11 +842,51 @@ var GF = function () {
                     
 
                 }
+                // Win
+                if(i === 44)
+                {
+                    i = 43;
+                    win = true;
+                }
                 if(controller.q)
                     {
                         currentGameState = gameStates.mainMenu;
                     }
     var map =         [
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,20,21,19,19,19,19,19,19,19,19,19,19,19,21,19,
+                       19,19,19,22,22,21,19,19,19,22,19,19,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,20,21,19,19,19,19,19,19,19,19,19,19,19,21,19,
+                       19,19,19,22,22,21,19,19,19,22,19,19,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,20,21,19,19,19,19,19,19,19,19,19,19,19,21,19,
+                       19,19,19,22,22,21,19,19,19,22,19,19,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,20,21,19,19,19,19,19,19,19,19,19,19,19,21,19,
+                       19,19,19,22,22,21,19,19,19,22,19,19,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,20,21,19,19,19,19,19,19,19,19,19,19,19,21,19,
+                       19,19,19,22,22,21,19,19,19,22,19,19,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,20,21,19,19,19,19,19,19,19,19,19,19,19,21,19,
+                       19,19,19,22,22,21,19,19,19,22,19,19,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
+                       19,20,21,19,19,19,19,19,19,19,19,19,19,19,21,19,
+                       19,19,19,22,22,21,19,19,19,22,19,19,19,19,19,19,
+                       19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
+                       20,19,19,19,19,19,20,19,19,19,19,20,19,19,19,19,
                        19,20,21,19,19,19,19,19,19,19,19,19,19,19,21,19,
                        19,19,19,22,22,21,19,19,19,22,19,19,19,19,19,19,
                        19,19,19,19,19,22,19,19,19,19,19,19,21,19,19,19,
@@ -831,7 +940,7 @@ var GF = function () {
         for (let index = map.length - 1; index > -1; -- index) {
             let value = map[index];
             let tile_x = (index % map_columns) * tile_size;
-            let tile_y = Math.floor(index / map_columns + i) * tile_size - 250;
+            let tile_y = Math.floor(index / map_columns-34 + i) * tile_size - 250;
             buffer.drawImage(tile_set, value * 16, 0, tile_size, tile_size, tile_x, tile_y, tile_size, tile_size);
             
         }
@@ -847,6 +956,29 @@ var GF = function () {
         dude.behave();
         buffer.drawImage(tile_set, dude.source_x, 0, tile_size, tile_size, Math.round(dude.x), Math.round(dude.y), tile_size, tile_size);
         ctx.drawImage(buffer.canvas, 0, 0, buffer.canvas.width, buffer.canvas.height, 0, 0, ctx.canvas.width, ctx.canvas.height);
+        
+        
+        // Win
+        if(win === true)
+        {
+            level3IsLock = "false";
+            window.localStorage.setItem("level3Lock", false);
+            if(controller.space)
+            {
+                win = false;
+                currentGameState = gameStates.mainMenu;
+            }
+            ctx.save();            
+            ctx.fillStyle = '#ffcc99';
+            ctx.fillRect(355, 205, 250, 60);
+            ctx.fillRect(210, 305, 560, 60);
+            ctx.font = 'italic 40pt Calibri';
+            ctx.fillStyle = "green";
+            ctx.fillText("You Win !", 370, 250);
+            ctx.fillStyle = "white";
+            ctx.fillText("Press Space to continue", 230, 350);
+            ctx.restore();
+        }
         
         if(dude.y > 200)
         {
@@ -885,7 +1017,7 @@ var GF = function () {
     function Level3()
     {
         
-        gravity = 0.3;
+        gravity = 0.4;
         if (controller.left)
         {
             dude.vx -= 0.5;
@@ -906,7 +1038,7 @@ var GF = function () {
               dude.x = 0;   
             }
         }
-                            
+                
                 if(died === true)
                 {
                     if(controller.space)
@@ -930,11 +1062,58 @@ var GF = function () {
                     
 
                 }
+        
+                // Win
+                if(i === 50)
+                {
+                    i = 49;
+                    win = true;
+                }
                 if(controller.q)
                     {
                         currentGameState = gameStates.mainMenu;
                     }
     var map =         [
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,20,18,18,18,18,20,18,18,18,18,
+                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,19,18,18,18,18,18,18,18,18,18,18,
+                       18,20,18,18,18,18,18,18,18,19,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       21,18,18,18,21,18,18,18,21,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,21,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,20,18,18,18,18,20,18,18,18,18,
+                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,19,18,18,18,18,18,18,18,18,18,18,
+                       18,20,18,18,18,18,18,18,18,19,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       21,18,18,18,21,18,18,18,21,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,21,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,20,18,18,18,18,20,18,18,18,18,
+                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,19,18,18,18,18,18,18,18,18,18,18,
+                       18,20,18,18,18,18,18,18,18,19,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       21,18,18,18,21,18,18,18,21,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,21,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,20,18,18,18,18,20,18,18,18,18,
+                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
+                       18,18,18,18,18,19,18,18,18,18,18,18,18,18,18,18,
+                       18,20,18,18,18,18,18,18,18,19,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+                       21,18,18,18,21,18,18,18,21,18,18,18,18,18,18,18,
+                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,21,
                        18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
                        18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
                        18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
@@ -962,8 +1141,6 @@ var GF = function () {
                        22,22,22,22,22,22,22,22,22,22,22,22,22,16,22,22,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
                      ];
             
@@ -988,7 +1165,7 @@ var GF = function () {
         for (let index = map.length - 1; index > -1; -- index) {
             let value = map[index];
             let tile_x = (index % map_columns) * tile_size;
-            let tile_y = Math.floor(index / map_columns + i) * tile_size - 250;
+            let tile_y = Math.floor(index / map_columns-40 + i) * tile_size - 250;
             buffer.drawImage(tile_set, value * 16, 0, tile_size, tile_size, tile_x, tile_y, tile_size, tile_size);
             
         }
@@ -1004,6 +1181,29 @@ var GF = function () {
         dude.behave();
         buffer.drawImage(tile_set, dude.source_x, 0, tile_size, tile_size, Math.round(dude.x), Math.round(dude.y), tile_size, tile_size);
         ctx.drawImage(buffer.canvas, 0, 0, buffer.canvas.width, buffer.canvas.height, 0, 0, ctx.canvas.width, ctx.canvas.height);
+        
+        // Win
+        if(win === true)
+        {
+            level4IsLock = "false";
+            window.localStorage.setItem("level4Lock", false);
+            if(controller.space)
+            {
+                win = false;
+                currentGameState = gameStates.mainMenu;
+            }
+            ctx.save();            
+            ctx.fillStyle = '#ffcc99';
+            ctx.fillRect(355, 205, 250, 60);
+            ctx.fillRect(210, 305, 560, 60);
+            ctx.font = 'italic 40pt Calibri';
+            ctx.fillStyle = "green";
+            ctx.fillText("You Win !", 370, 250);
+            ctx.fillStyle = "white";
+            ctx.fillText("Press Space to continue", 230, 350);
+            ctx.restore();
+        }
+        
         
         if(dude.y > 200)
         {
@@ -1042,7 +1242,7 @@ var GF = function () {
     function Level4()
     {
         
-        gravity = 0.3;
+        gravity = 0.45;
         if (controller.left)
         {
             dude.vx -= 0.5;
@@ -1063,7 +1263,12 @@ var GF = function () {
               dude.x = 0;   
             }
         }
-                            
+        // Win          
+        if(i === 52)
+        {
+            i = 51;
+            win = true;
+        }
                 if(died === true)
                 {
                     if(controller.space)
@@ -1092,6 +1297,46 @@ var GF = function () {
                         currentGameState = gameStates.mainMenu;
                     }
     var map =         [
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1147,7 +1392,7 @@ var GF = function () {
         for (let index = map.length - 1; index > -1; -- index) {
             let value = map[index];
             let tile_x = (index % map_columns) * tile_size;
-            let tile_y = Math.floor(index / map_columns + i) * tile_size - 250;
+            let tile_y = Math.floor(index / map_columns-40 + i) * tile_size - 250;
             buffer.drawImage(tile_set, value * 16, 0, tile_size, tile_size, tile_x, tile_y, tile_size, tile_size);
             
         }
@@ -1163,6 +1408,28 @@ var GF = function () {
         dude.behave();
         buffer.drawImage(tile_set, dude.source_x, 0, tile_size, tile_size, Math.round(dude.x), Math.round(dude.y), tile_size, tile_size);
         ctx.drawImage(buffer.canvas, 0, 0, buffer.canvas.width, buffer.canvas.height, 0, 0, ctx.canvas.width, ctx.canvas.height);
+        
+        // Win
+        if(win === true)
+        {
+            level5IsLock = "false";
+            window.localStorage.setItem("level5Lock", false);
+            if(controller.space)
+            {
+                win = false;
+                currentGameState = gameStates.mainMenu;
+            }
+            ctx.save();            
+            ctx.fillStyle = '#ffcc99';
+            ctx.fillRect(355, 205, 250, 60);
+            ctx.fillRect(210, 305, 560, 60);
+            ctx.font = 'italic 40pt Calibri';
+            ctx.fillStyle = "green";
+            ctx.fillText("You Win !", 370, 250);
+            ctx.fillStyle = "white";
+            ctx.fillText("Press Space to continue", 230, 350);
+            ctx.restore();
+        }
         
         if(dude.y > 200)
         {
@@ -1213,6 +1480,8 @@ var GF = function () {
             
         } 
         
+
+    
         if (controller.right) 
         {
             dude.vx += 0.5;
@@ -1222,7 +1491,13 @@ var GF = function () {
               dude.x = 0;   
             }
         }
-                            
+                          
+        // Win          
+        if(i === 175)
+        {
+            i = 174;
+            win = true;
+        }
                 if(died === true)
                 {
                     if(controller.space)
@@ -1250,32 +1525,198 @@ var GF = function () {
                     {
                         currentGameState = gameStates.mainMenu;
                     }
-    var map =         [
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,18,18,18,20,18,18,18,18,20,18,18,18,18,
-                       18,18,18,19,18,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,18,18,19,18,18,18,18,18,18,18,18,18,18,
-                       18,20,18,18,18,18,18,18,18,19,18,18,18,18,18,18,
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
-                       21,18,18,18,21,18,18,18,21,18,18,18,18,18,18,18,
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,21,
-                       18,18,1,2,3,18,18,21,18,18,18,18,18,18,18,18,
-                       18,18,4,5,6,18,18,18,18,18,19,18,18,21,18,18,
-                       21,18,7,8,9,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
-                       20,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,19,18,18,19,18,18,18,18,19,18,18,21,18,
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,19,18,18,19,20,18,19,18,19,18,19,18,18,
-                       20,18,18,18,18,18,18,18,18,18,18,18,20,18,18,20,
-                       19,18,18,18,20,18,18,18,18,21,18,18,18,18,18,18,
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,18,18,20,18,18,18,18,18,18,18,18,18,18,
-                       18,18,18,18,18,18,18,18,18,18,18,18,18,17,18,18,
-                       22,22,22,22,22,22,22,22,22,22,22,22,22,16,22,22,
+    var map =         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1304,7 +1745,7 @@ var GF = function () {
         for (let index = map.length - 1; index > -1; -- index) {
             let value = map[index];
             let tile_x = (index % map_columns) * tile_size;
-            let tile_y = Math.floor(index / map_columns + i) * tile_size - 250;
+            let tile_y = Math.floor(index / map_columns-167 + i) * tile_size - 250;
             buffer.drawImage(tile_set, value * 16, 0, tile_size, tile_size, tile_x, tile_y, tile_size, tile_size);
             
         }
@@ -1320,6 +1761,28 @@ var GF = function () {
         dude.behave();
         buffer.drawImage(tile_set, dude.source_x, 0, tile_size, tile_size, Math.round(dude.x), Math.round(dude.y), tile_size, tile_size);
         ctx.drawImage(buffer.canvas, 0, 0, buffer.canvas.width, buffer.canvas.height, 0, 0, ctx.canvas.width, ctx.canvas.height);
+        
+        // Win
+        if(win === true)
+        {
+            finishWord = "false";
+            window.localStorage.setItem("finishWord", false);
+            if(controller.space)
+            {
+                win = false;
+                currentGameState = gameStates.mainMenu;
+            }
+            ctx.save();            
+            ctx.fillStyle = '#ffcc99';
+            ctx.fillRect(355, 205, 250, 60);
+            ctx.fillRect(210, 305, 560, 60);
+            ctx.font = 'italic 40pt Calibri';
+            ctx.fillStyle = "green";
+            ctx.fillText("You Win !", 370, 250);
+            ctx.fillStyle = "white";
+            ctx.fillText("Press Space to continue", 230, 350);
+            ctx.restore();
+        }
         
         if(dude.y > 200)
         {
@@ -1386,12 +1849,12 @@ var GF = function () {
         ctx = canvas.getContext('2d');
         // default police for text
         ctx.font = "20px Arial";
-        
+        //window.localStorage.clear();
         level2IsLock = window.localStorage.getItem("level2Lock");
         level3IsLock = window.localStorage.getItem("level3Lock");
         level4IsLock = window.localStorage.getItem("level4Lock");
         level5IsLock = window.localStorage.getItem("level5Lock");
-        level6IsLock = window.localStorage.getItem("level6Lock");
+        finishWord = window.localStorage.getItem("finishWord");
         
         
         // Create the different key and mouse listeners

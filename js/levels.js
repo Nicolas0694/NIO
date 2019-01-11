@@ -143,13 +143,15 @@ const Controller = function() {
     var dude = new Dude(100, 100, dudeBehavior);
     
     var i = 0;
-    
-    
-            var interval = setInterval(increment, 3000);
 
-            function increment(){
+    var interval = setInterval(increment, 1000); 
+        
+       function increment(){
                 i = i % 360 + 1;
                 floor += i+16;
                 }
+    
+                        
+        
 
 

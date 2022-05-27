@@ -27,5 +27,4 @@ Le joueur sélectionne un niveau pour le lancer, et le suivant se débloque une 
 * Architecture des niveaux faite grâce à une matrice et une collection de plateformes a afficher donc personnalisable 
 * Plusieurs types de plateformes sont ajoutables à chaque niveau les rendant plus ou moins complexes et uniques
 * Durée des niveaux variable et théoriquement aussi longs que les machines le permettent 
-* Jeu fluide 
 
